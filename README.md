@@ -16,3 +16,6 @@
         - Install CocoaPods by running the following command in a terminal
             sudo gem install cocoapods
 ### (7) npx react-native init hello
+
+![alt text](https://github.com/himesh-salpo/vdev-20210124/blob/main/hello/assets/img-1.png?raw=true)
+![alt text](https://github.com/himesh-salpo/vdev-20210124/blob/main/hello/assets/img-2.png?raw=true)
