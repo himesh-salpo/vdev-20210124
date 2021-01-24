@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { SafeAreaView, View, Text, TextInput, TouchableOpacity, Alert, StyleSheet } from 'react-native';
 
 const SignIn = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isValidEmail, setIsValidEmail] = useState(false);
+  const [isValidPassword, setIsValidPassword] = useState(false);
   const [isDisabled, setIsDisabled] = useState(true);
 
   const validateEmail = (email) => {
@@ -12,16 +14,32 @@ const SignIn = () => {
   }
 
   useEffect(() => {
-    if (email && password) {
+    if (!email) {
+      setIsValidEmail(false);
+    } else {
       if (validateEmail(email)) {
-        setIsDisabled(false);
+        setIsValidEmail(true);
       } else {
-        setIsDisabled(true);
+        setIsValidEmail(false);
       }
+    }
+
+    if (!password) {
+      setIsValidPassword(false);
+    } else {
+      setIsValidPassword(true);
+    }
+
+    if (email && password && validateEmail(email)) {
+      setIsDisabled(false);
     } else {
       setIsDisabled(true);
     }
   }, [email, password]);
+
+  const handleOnPress = () => {
+    Alert.alert('Done');
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -37,6 +55,11 @@ const SignIn = () => {
           />
         </View>
       </View>
+      {!isValidEmail ? (
+        <View style={styles.errorContainer}>
+          <Text style={styles.error}>{'Email is invalid.'}</Text>
+        </View>
+      ) : <></>}
       <View style={styles.field}>
         <Text style={styles.label}>{'Password'}</Text>
         <View style={styles.inputContainer}>
@@ -50,8 +73,13 @@ const SignIn = () => {
           />
         </View>
       </View>
+      {!isValidPassword ? (
+        <View style={styles.errorContainer}>
+          <Text style={styles.error}>{'Password is invalid.'}</Text>
+        </View>
+      ) : <></>}
       <View style={[styles.buttonContainer]}>
-        <TouchableOpacity style={styles.button} disabled={isDisabled}>
+        <TouchableOpacity style={styles.button} onPress={handleOnPress} disabled={isDisabled}>
           <Text style={styles.buttonTitle}>{'Sign In'}</Text>
         </TouchableOpacity>
       </View>
@@ -68,7 +96,7 @@ const styles = StyleSheet.create({
   },
   field: {
     flexDirection: 'row',
-    marginBottom: 20,
+    marginBottom: 10,
   },
   label: {
     marginTop: 8,
@@ -104,6 +132,15 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 40,
     alignItems: 'flex-end',
+    marginTop: 10,
+  },
+  errorContainer: {
+    alignItems: 'center',
+    marginBottom: 10,
+  },
+  error: {
+    fontSize: 14,
+    color: 'red',
   },
 });
 
