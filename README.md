@@ -10,9 +10,9 @@
             brew install watchman
         - Install Xcode is via the Mac App Store
         - Install the Xcode Command Line Tools
-            Open Xcode, then choose "Preferences..." from the Xcode menu. Go to the Locations panel and install the tools by selecting the most recent version in               the Command Line Tools dropdown.
+            Open Xcode, then choose "Preferences..." from the Xcode menu. Go to the Locations panel and install the tools by selecting the most recent version in the Command Line Tools dropdown.
         - Install an iOS Simulator in Xcode
-            To install a simulator, open Xcode > Preferences... and select the Components tab. Select a simulator with the corresponding version of iOS you wish to             use.
+            To install a simulator, open Xcode > Preferences... and select the Components tab. Select a simulator with the corresponding version of iOS you wish to use.
         - Install CocoaPods by running the following command in a terminal
             sudo gem install cocoapods
 ### (7) npx react-native init hello
